@@ -1,12 +1,18 @@
 use std::io::{BufRead, BufReader};
 use std::fs::File;
 use std::cmp;
+use std::env;
 
 fn main() {
-    // let filename = "data/input-test.txt";
-    let filename = "data/input.txt";
+    let mut input = env::current_exe().unwrap();
+    input.pop();
+    input.pop();
+    input.pop();
+    input.push("data");
+    input.push("input.txt");
+    // input.push("input-test.txt");
 
-    let reader = BufReader::new(File::open(filename).expect(&format!("Cannot open {}", filename)));
+    let reader = BufReader::new(File::open(&input).expect(&format!("Cannot open {}", input.display())));
     let lines : Vec<String> = reader.lines().map(|l| l.expect("Could not parse line")).collect();
 
     let mut max_calories = 0;
