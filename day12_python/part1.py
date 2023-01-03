@@ -50,7 +50,7 @@ class Square:
         self.elevation: int = string.ascii_lowercase.index(elevation)
         self.adjacent: set[Square] = set()
 
-        self.distance: int = 0 if elevation == 'a' else float('inf')
+        self.distance: int = float('inf')
         self.previous: Square = None
 
     def find_and_add_adjacent(self, grid: list[list[Square]]):
